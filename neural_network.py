@@ -90,14 +90,14 @@ class NeuralNetwork:
             print ("Cost after iteration %i: %f" %(i, cost))
             # update w and b to dictionary
         params = {"w": w,
-              "b": b}
+                  "b": b}
     
         # update derivatives to dictionary
-        grads = {"dw": dw,
-             "db": db}
+        grads = {"dw": deriv_weight,
+                 "db": deriv_bias}
     
         return params, grads, costs
-        
+
   def propagate(self, w, b, X, Y):
     m = X.shape[1]
     
@@ -176,5 +176,5 @@ model_nt = neural_network.model(train_set_x,
 
 test_image = "cat.jpg"
 my_image = read_image(test_image).reshape(1, rows*cols*channels).T
-my_predicted_image = model_nt.predict(model_nt["w"], model_nt["b"], my_image)
+my_predicted_image = neural_network.predict(model_nt["w"], model_nt["b"], my_image)
 print("cat.js is cat: ",np.squeeze(my_predicted_image))
